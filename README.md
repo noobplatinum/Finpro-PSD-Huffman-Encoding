@@ -1,1 +1,3 @@
 # Finpro-PSD-Huffman-Encoding
+
+Program menggunakan algoritma encoding Huffman (berbasis tree) untuk menyimpan data kemunculan tiap karakter dalam string yang disediakan pengguna lewat file .txt. Selanjutnya, program akan mengurutkan frekuensi kemunculan tiap karakter yang ada, lalu membuat struktur pohon (tree) berdasarkan occurence. Setelah tree dibangun, dengan algoritma Huffman, nilai biner tiap karakter ditentukan agar tidak bertabrakan, lalu metadatanya disediakan di file .txt beserta string utuh yang telah dikompres. Kami mengimplementasikan ini sebagai metode percepatan encoding/compression text karena algoritma ini umum digunakan untuk size string yang besar, sehingga butuh percepatan dan efisiensi FPGA.
