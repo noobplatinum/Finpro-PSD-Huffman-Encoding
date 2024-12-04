@@ -1,54 +1,260 @@
 m255
 K4
 z2
-!s11e vcom 2020.1 2020.02, Feb 28 2020
 13
 !s112 1.1
 !i10d 8192
 !i10e 25
 !i10f 100
 cModel Technology
-dC:/Users/user/Documents/Tugas KULIAH Bryan/Perancangan Sistem Digital/Quartus projects/Finpro PSD
-Estring_frequency
-Z0 w1733060869
-Z1 DPx4 ieee 16 std_logic_textio 0 22 ^l:n6VFdg74Q?CKDhjD]D3
-Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 0
-Z4 dC:/Users/user/Documents/Tugas KULIAH Bryan/Perancangan Sistem Digital/Quartus projects/Finpro-PSD-Huffman-Encoding
-Z5 8C:/Users/user/Documents/Tugas KULIAH Bryan/Perancangan Sistem Digital/Quartus projects/Finpro-PSD-Huffman-Encoding/test1.vhd
-Z6 FC:/Users/user/Documents/Tugas KULIAH Bryan/Perancangan Sistem Digital/Quartus projects/Finpro-PSD-Huffman-Encoding/test1.vhd
+dC:/intelFPGA/18.1
+Efrequency_sorter
+w1733244346
+Z0 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z3 dC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding
+Z4 8C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Sorter.vhd
+Z5 FC:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Sorter.vhd
 l0
-L6 1
-Vk1h1CdCg:FTaN=2D:?j4m1
-!s100 67L6WkhV_P39]?SD2j]dc2
-Z7 OV;C;2020.1;71
+L6
+VC[AmMYLk4T7=d8ioALc`H1
+!s100 8Tj5^09oToYROGGIS7Fc@2
+Z6 OV;C;10.5b;63
 32
-Z8 !s110 1733060874
+!s110 1733244349
 !i10b 1
-Z9 !s108 1733060874.000000
-Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/user/Documents/Tugas KULIAH Bryan/Perancangan Sistem Digital/Quartus projects/Finpro-PSD-Huffman-Encoding/test1.vhd|
-!s107 C:/Users/user/Documents/Tugas KULIAH Bryan/Perancangan Sistem Digital/Quartus projects/Finpro-PSD-Huffman-Encoding/test1.vhd|
+!s108 1733244349.000000
+Z7 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Sorter.vhd|
+Z8 !s107 C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Sorter.vhd|
 !i113 1
-Z11 o-work work -2002 -explicit
-Z12 tExplicit 1 CvgOpt 0
-Abehavioral
+Z9 o-work work -2002 -explicit
+Z10 tExplicit 1 CvgOpt 0
+Ereader
+Z11 w1733245888
+Z12 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
 R1
 R2
 R3
-DEx4 work 16 string_frequency 0 22 k1h1CdCg:FTaN=2D:?j4m1
-!i122 0
-l24
-L9 73
-VaiJPemEeoMKfWXBjfnPeJ2
-!s100 8X1:lzQz@M:gcBX^3HhTk2
-R7
+Z13 8C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Reader.vhd
+Z14 FC:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Reader.vhd
+l0
+L6
+V_I[Ec1kRUC`_0?P<VFUKR0
+!s100 PCLI:FzXB`l@V23I>aE@L1
+R6
 32
-R8
+Z15 !s110 1733318578
 !i10b 1
+Z16 !s108 1733318578.000000
+Z17 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Reader.vhd|
+Z18 !s107 C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Reader.vhd|
+!i113 1
 R9
 R10
-Z13 !s107 C:/Users/user/Documents/Tugas KULIAH Bryan/Perancangan Sistem Digital/Quartus projects/Finpro-PSD-Huffman-Encoding/test1.vhd|
-!i113 1
-R11
+Abehavioral
 R12
+R1
+R2
+DEx4 work 6 reader 0 22 _I[Ec1kRUC`_0?P<VFUKR0
+l18
+L9
+V_U9@EA6mNZRFjVBPigh9U0
+!s100 K4Y]Q=SAYL9giF?BG2om>2
+R6
+32
+R15
+!i10b 1
+R16
+R17
+R18
+!i113 1
+R9
+R10
+Ereadersorter
+Z19 w1733321642
+R12
+R1
+R2
+R3
+R4
+R5
+l0
+L6
+VUYgFkhd86gN;m6Z2On:`c2
+!s100 BSndOKi1`We8n6EHmPiKE0
+R6
+32
+Z20 !s110 1733322025
+!i10b 1
+Z21 !s108 1733322025.000000
+R7
+R8
+!i113 1
+R9
+R10
+Abehavioral
+R12
+R1
+R2
+DEx4 work 12 readersorter 0 22 UYgFkhd86gN;m6Z2On:`c2
+l16
+L9
+V;Ncb@NjH9Li^TV<1JUbzl0
+!s100 zAjc5?g^UEf43RdRBF8MN0
+R6
+32
+R20
+!i10b 1
+R21
+R7
+R8
+!i113 1
+R9
+R10
+Ereadersorterx
+Z22 w1733327725
+R0
+R12
+R1
+R2
+R3
+R4
+R5
+l0
+L7
+VeFX=Abgb`?8daV=_ZJSTg0
+!s100 N7aFk]TY9VJd=B5BalYIT1
+R6
+32
+Z23 !s110 1733327734
+!i10b 1
+Z24 !s108 1733327734.000000
+R7
+R8
+!i113 1
+R9
+R10
+Abehavioral
+R0
+R12
+R1
+R2
+DEx4 work 13 readersorterx 0 22 eFX=Abgb`?8daV=_ZJSTg0
+l40
+L17
+V4zbNJW:`A<[]UAIL:FfY[2
+!s100 GeI@7f0ok131nm2EaGcb03
+R6
+32
+R23
+!i10b 1
+R24
+R7
+R8
+!i113 1
+R9
+R10
+Ereadsort
+Z25 w1733327971
+R0
+R12
+R1
+R2
+R3
+Z26 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/ReadSort.vhd
+Z27 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/ReadSort.vhd
+l0
+L7
+Vgo4_I1XDelXCo1V3[6hg`0
+!s100 S7PLJlfXQkaJ4^dR;62Fc0
+R6
+32
+Z28 !s110 1733327975
+!i10b 1
+Z29 !s108 1733327975.000000
+Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/ReadSort.vhd|
+Z31 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/ReadSort.vhd|
+!i113 1
+R9
+R10
+Abehavioral
+R0
+R12
+R1
+R2
+Z32 DEx4 work 8 readsort 0 22 go4_I1XDelXCo1V3[6hg`0
+l39
+L17
+VUZVniJkE[7`MIdF0aNQFk3
+!s100 mFe=TA1e1fK_`z[czG]HF2
+R6
+32
+R28
+!i10b 1
+R29
+R30
+R31
+!i113 1
+R9
+R10
+Esorter
+Z33 w1733246542
+R0
+R1
+R2
+R3
+R4
+R5
+l0
+L6
+V?^5S_i0fi49EXe<d5U6KA0
+!s100 PBmlUUIB5W9nk0dhz5P@63
+R6
+32
+!s110 1733246546
+!i10b 1
+!s108 1733246546.000000
+R7
+R8
+!i113 1
+R9
+R10
+Abehavioral
+R0
+R1
+R2
+DEx4 work 6 sorter 0 22 ]BB>OPE@[g7k8zi8K?RGl0
+l25
+L19
+VTRCaX80<L]ha@PNe`GdD:1
+!s100 hW48Mknl]:WY9^8?he75M0
+R6
+32
+!s110 1733246120
+!i10b 1
+!s108 1733246120.000000
+R7
+R8
+!i113 1
+R9
+R10
+Ptypespkg
+w1733320447
+R3
+8C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\TypesPkg.vhd
+FC:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\TypesPkg.vhd
+l0
+L1
+V6I9c5E`8l=1?7Fjlaa^?E1
+!s100 Rdbnj>]5HC7:RMVkU`YYN0
+R6
+32
+!s110 1733320450
+!i10b 1
+!s108 1733320450.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\TypesPkg.vhd|
+!s107 C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\TypesPkg.vhd|
+!i113 1
+R9
+R10
