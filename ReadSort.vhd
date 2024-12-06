@@ -10,7 +10,8 @@ entity ReadSort is
         reset        : in  STD_LOGIC;
         data_ready   : out STD_LOGIC;
         sorted_char  : out STD_LOGIC_VECTOR(7 downto 0);
-        sorted_freq  : out INTEGER
+        sorted_freq  : out INTEGER;
+        done         : out STD_LOGIC
     );
 end ReadSort;
 
@@ -26,10 +27,11 @@ architecture Behavioral of ReadSort is
     signal data_index      : integer := 0;
     signal total_chars     : integer := 0;
 
-    type state_type is (read_file, count_freq, sort_data, output_data, done);
+    type state_type is (read_file, count_freq, sort_data, output_data, write_file, done_state);
     signal state : state_type := read_file;
 
     file input_file : text open read_mode is "Input";
+    file output_file : text open write_mode is "Output";
 
     function char_to_slv(c : character) return STD_LOGIC_VECTOR is
     begin
@@ -46,12 +48,14 @@ begin
         variable i, j, k        : integer;
         variable temp_freq      : integer;
         variable temp_char_var  : character;
+        variable output_line    : line;
     begin
         if reset = '1' then
             state       <= read_file;
             data_index  <= 0;
             data_ready  <= '0';
             total_chars <= 0;
+            done        <= '0';
         elsif rising_edge(clk) then
             case state is
                 when read_file =>
@@ -68,13 +72,17 @@ begin
                         total_chars <= char_count;
                         state <= count_freq;
                     end if;
+
                 when count_freq =>
                     for i in 0 to total_chars - 1 loop
-                        frequencies(character'pos(unsorted_chars(i))) := frequencies(character'pos(unsorted_chars(i))) + 1;
+                        frequencies(character'pos(unsorted_chars(i))) := 
+                            frequencies(character'pos(unsorted_chars(i))) + 1;
                     end loop;
                     state <= sort_data;
+
                 when sort_data =>
                     j := 0;
+                    -- First collect non-zero frequency characters
                     for i in 0 to ASCII_RANGE - 1 loop
                         if frequencies(i) > 0 then
                             sorted_chars(j) <= character'val(i);
@@ -83,12 +91,15 @@ begin
                         end if;
                     end loop;
 
+                    -- Then sort them by frequency (bubble sort)
                     for i in 0 to j - 2 loop
                         for k in 0 to j - i - 2 loop
                             if sorted_freqs(k) < sorted_freqs(k + 1) then
+                                -- Swap frequencies
                                 temp_freq := sorted_freqs(k);
                                 sorted_freqs(k) <= sorted_freqs(k + 1);
                                 sorted_freqs(k + 1) <= temp_freq;
+                                -- Swap characters
                                 temp_char_var := sorted_chars(k);
                                 sorted_chars(k) <= sorted_chars(k + 1);
                                 sorted_chars(k + 1) <= temp_char_var;
@@ -96,23 +107,37 @@ begin
                         end loop;
                     end loop;
                     total_chars <= j;
-                    data_index  <= 0;
-                    state       <= output_data;
+                    data_index <= 0;
+                    state <= output_data;
+
                 when output_data =>
                     if data_index < total_chars then
                         sorted_char <= char_to_slv(sorted_chars(data_index));
                         sorted_freq <= sorted_freqs(data_index);
-                        data_ready  <= '1';
-                        data_index  <= data_index + 1;
+                        data_ready <= '1';
+                        data_index <= data_index + 1;
                     else
                         data_ready <= '0';
-                        state      <= done;
+                        state <= write_file;
                     end if;
-                when done =>
+
+                when write_file =>
+                    for i in 0 to total_chars - 1 loop
+                        write(output_line, sorted_chars(i));
+                        write(output_line, string'(" "));
+                        write(output_line, sorted_freqs(i));
+                        writeline(output_file, output_line);
+                    end loop;
+                    state <= done_state;
+
+                when done_state =>
                     data_ready <= '0';
+                    done <= '1';
+
                 when others =>
-                    state <= done;
+                    state <= done_state;
             end case;
         end if;
     end process;
 end Behavioral;
+

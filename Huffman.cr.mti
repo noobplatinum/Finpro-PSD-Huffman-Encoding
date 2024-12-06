@@ -1,13 +1,4 @@
-C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/Reader.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Reader.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package std_logic_textio
--- Compiling entity ReaderSorterX
--- Compiling architecture Behavioral of ReaderSorterX
-
-} {} {}} C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/Topmod.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Topmod.vhd}
+C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/Topmod.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Topmod.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
