@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
+use STD.TEXTIO.ALL;
 
 entity NodeMerger is
     Port (
@@ -26,6 +27,45 @@ architecture Behavioral of NodeMerger is
     end record;
 
     type state_type is (idle_state, load_state, sort_state, merge_state, done_state);
+    file tree_file : text open write_mode is "HuffmanArray";
+
+    procedure write_node_info(
+        file f: text;
+        index: in integer;
+        node: in node_type) is
+        variable l: line;
+        variable temp_str: string(1 to 1);
+    begin
+        -- Write index
+        write(l, integer'image(index), right, 1);
+        write(l, string'(","));
+        
+        -- Write character
+        if node.is_leaf then
+            temp_str(1) := character'val(to_integer(unsigned(node.character)));
+            write(l, temp_str, right, 1);
+        else
+            write(l, string'("-"), right, 1);
+        end if;
+        write(l, string'(","));
+        
+        -- Write frequency
+        write(l, integer'image(node.frequency), right, 1);
+        write(l, string'(","));
+        
+        -- Write left child
+        write(l, integer'image(node.left_child), right, 1);
+        write(l, string'(","));
+        
+        -- Write right child
+        write(l, integer'image(node.right_child), right, 1);
+        write(l, string'(","));
+        
+        -- Write is_leaf
+        write(l, boolean'image(node.is_leaf), right, 1);
+        
+        writeline(f, l);
+    end procedure;
 
     constant NUM_LEAF_NODES : integer := 8;
     constant MAX_NODES      : integer := (2 * NUM_LEAF_NODES) - 1;
@@ -48,6 +88,7 @@ architecture Behavioral of NodeMerger is
     signal next_node_index : integer := 0;
     signal root_index_sig : integer := 0;
     signal received_first_node : boolean := false;
+    signal write_complete : boolean := false;
 
     constant SHOW_DEBUG : boolean := true;
 
@@ -112,6 +153,8 @@ begin
                         nodes(next_node_index).character <= sorted_char;
                         nodes(next_node_index).frequency <= sorted_freq;
                         nodes(next_node_index).is_leaf <= true;
+                        nodes(next_node_index).left_child <= -1;  -- Added
+                        nodes(next_node_index).right_child <= -1; -- Added
                         sorted_indices(next_node_index) <= next_node_index;
                         next_node_index <= next_node_index + 1;
                     end if;
@@ -237,9 +280,15 @@ begin
                         state <= done_state;
                     end if;
 
-                when done_state =>
-                    merge_done <= '1';
-
+                    when done_state =>
+                    if not write_complete then
+                        for i in 0 to next_node_index-1 loop
+                            write_node_info(tree_file, i, nodes(i));
+                        end loop;
+                        write_complete <= true;
+                        merge_done <= '1';
+                    end if;
+                
                 when others =>
                     state <= done_state;
             end case;

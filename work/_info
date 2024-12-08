@@ -30,40 +30,35 @@ Z8 !s107 C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Sorter.vhd|
 !i113 1
 Z9 o-work work -2002 -explicit
 Z10 tExplicit 1 CvgOpt 0
-Ehuffmanencoder
-Z11 w1733494650
-R0
+Phuffman_pkg
 R1
 R2
+Z11 w1733657899
 R3
-Z12 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TopMod.vhd
-Z13 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TopMod.vhd
+Z12 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/huffman_pkg.vhd
+Z13 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/huffman_pkg.vhd
 l0
-L5
-VboJ57L1ecMg`A1@JW<^bz0
-!s100 :z7e_`>W[g@5DLfX^C6>Z2
+L4
+V>g74MMDgj^<Cm1EXjKX4J0
+!s100 <@ZRnlM2zB[<0^FKFeoQ>2
 R6
 32
-Z14 !s110 1733496462
+Z14 !s110 1733657903
 !i10b 1
-Z15 !s108 1733496462.000000
-Z16 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TopMod.vhd|
-Z17 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TopMod.vhd|
+Z15 !s108 1733657903.000000
+Z16 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/huffman_pkg.vhd|
+Z17 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/huffman_pkg.vhd|
 !i113 1
 R9
 R10
-Abehavioral
-DEx4 work 13 nodegenerator 0 22 =Uzjk8Ti@UT>;=eD1mh9L0
-Z18 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
-Z19 DEx4 work 8 readsort 0 22 g_<QhE[4=dVG4H9jLJ^Bz2
-R0
+Bbody
+DPx4 work 11 huffman_pkg 0 22 >g74MMDgj^<Cm1EXjKX4J0
 R1
 R2
-DEx4 work 14 huffmanencoder 0 22 boJ57L1ecMg`A1@JW<^bz0
-l27
+l0
 L19
-VXVd?SzzU3B]UKC@@XC;?71
-!s100 ^FkbjGGY]cK3aUTLo:;5`2
+VL3QNJN;JVRd0c07cBLCi<3
+!s100 aP4gF:oS?M<`;SV[W;PmU3
 R6
 32
 R14
@@ -74,25 +69,69 @@ R17
 !i113 1
 R9
 R10
-Ehuffmanprep
-Z20 w1733331864
+Ehuffmanencoder
+Z18 w1733494650
 R0
 R1
 R2
 R3
-Z21 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanTop.vhd
-Z22 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanTop.vhd
+Z19 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TopMod.vhd
+Z20 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TopMod.vhd
+l0
+L5
+VboJ57L1ecMg`A1@JW<^bz0
+!s100 :z7e_`>W[g@5DLfX^C6>Z2
+R6
+32
+Z21 !s110 1733496462
+!i10b 1
+Z22 !s108 1733496462.000000
+Z23 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TopMod.vhd|
+Z24 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TopMod.vhd|
+!i113 1
+R9
+R10
+Abehavioral
+DEx4 work 13 nodegenerator 0 22 =Uzjk8Ti@UT>;=eD1mh9L0
+Z25 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
+Z26 DEx4 work 8 readsort 0 22 g_<QhE[4=dVG4H9jLJ^Bz2
+R0
+R1
+R2
+DEx4 work 14 huffmanencoder 0 22 boJ57L1ecMg`A1@JW<^bz0
+l27
+L19
+VXVd?SzzU3B]UKC@@XC;?71
+!s100 ^FkbjGGY]cK3aUTLo:;5`2
+R6
+32
+R21
+!i10b 1
+R22
+R23
+R24
+!i113 1
+R9
+R10
+Ehuffmanprep
+Z27 w1733331864
+R0
+R1
+R2
+R3
+Z28 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanTop.vhd
+Z29 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanTop.vhd
 l0
 L6
 V0W@_IZC=hRH[AACggi0E80
 !s100 HEhW9HZAS9P4eIAJRGjVA0
 R6
 32
-Z23 !s110 1733331901
+Z30 !s110 1733331901
 !i10b 1
-Z24 !s108 1733331901.000000
-Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanTop.vhd|
-Z26 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanTop.vhd|
+Z31 !s108 1733331901.000000
+Z32 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanTop.vhd|
+Z33 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanTop.vhd|
 !i113 1
 R9
 R10
@@ -107,47 +146,6 @@ Vb:CdDg8T8i0@P4OGol?fR2
 !s100 lWoAjC0E<d>Y6k2f?::0X0
 R6
 32
-R23
-!i10b 1
-R24
-R25
-R26
-!i113 1
-R9
-R10
-Ehuffmanprocessor
-Z27 w1733647758
-R0
-R1
-R2
-R3
-Z28 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd
-Z29 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd
-l0
-L5
-V@0^kk[Hf2EVJU72;^85>T2
-!s100 ]g8?QC<92Q<j3Ln?:mBg[0
-R6
-32
-Z30 !s110 1733647761
-!i10b 1
-Z31 !s108 1733647761.000000
-Z32 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd|
-Z33 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd|
-!i113 1
-R9
-R10
-Abehavioral
-R0
-R1
-R2
-DEx4 work 16 huffmanprocessor 0 22 @0^kk[Hf2EVJU72;^85>T2
-l75
-L14
-V6k_dETZF7H0hPL:K5oY5I3
-!s100 B^LF:UEC;:za_XXlW5]4J2
-R6
-32
 R30
 !i10b 1
 R31
@@ -156,39 +154,37 @@ R33
 !i113 1
 R9
 R10
-Enodegenerator
-Z34 w1733506482
+Ehuffmanprocessor
+Z34 w1733668811
 R0
-R18
 R1
 R2
 R3
-Z35 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeGen.vhd
-Z36 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeGen.vhd
+Z35 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd
+Z36 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd
 l0
-L8
-Vca`?:<7N;CXzmke>Z<d1A3
-!s100 2N=[Mm76XIc[2OWkaY:km3
+L5
+V@0^kk[Hf2EVJU72;^85>T2
+!s100 ]g8?QC<92Q<j3Ln?:mBg[0
 R6
 32
-Z37 !s110 1733506485
+Z37 !s110 1733668815
 !i10b 1
-Z38 !s108 1733506485.000000
-Z39 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeGen.vhd|
-Z40 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeGen.vhd|
+Z38 !s108 1733668815.000000
+Z39 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd|
+Z40 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd|
 !i113 1
 R9
 R10
 Abehavioral
 R0
-R18
 R1
 R2
-DEx4 work 13 nodegenerator 0 22 ca`?:<7N;CXzmke>Z<d1A3
-l45
-L19
-VDoT=P`?JA0iS3E2DN81Q:2
-!s100 JN:26Kjge`oTP=G5?0HRK2
+Z41 DEx4 work 16 huffmanprocessor 0 22 @0^kk[Hf2EVJU72;^85>T2
+l85
+L14
+V1OM_E<fHag@?GeIl:HLOk3
+!s100 G6ZnCf[EMSRTMFjmUbi9:2
 R6
 32
 R37
@@ -199,25 +195,25 @@ R40
 !i113 1
 R9
 R10
-Enodemerger
-Z41 w1733647294
+Ehuffmantranslator
+Z42 w1733668266
 R0
 R1
 R2
 R3
-Z42 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge.vhd
-Z43 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge.vhd
+Z43 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanTranslations.vhd
+Z44 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanTranslations.vhd
 l0
-L5
-Vo@eJ:Jn_2kIKIB1cV`U^;3
-!s100 <3geAo26kDSa@ZedmPO6[0
+L6
+VWogdFRmjW?]_I2DlCkMSA2
+!s100 >7KZR6oDnhaZAPLHmOF^c0
 R6
 32
-Z44 !s110 1733647298
+Z45 !s110 1733668269
 !i10b 1
-Z45 !s108 1733647298.000000
-Z46 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge.vhd|
-Z47 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge.vhd|
+Z46 !s108 1733668269.000000
+Z47 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanTranslations.vhd|
+Z48 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanTranslations.vhd|
 !i113 1
 R9
 R10
@@ -225,40 +221,124 @@ Abehavioral
 R0
 R1
 R2
-DEx4 work 10 nodemerger 0 22 o@eJ:Jn_2kIKIB1cV`U^;3
-l54
-L18
-V@Q?CIlAYoE]VDQT@2L]O_3
-!s100 nf882RmXUd0EDfPN<HI411
+DEx4 work 17 huffmantranslator 0 22 WogdFRmjW?]_I2DlCkMSA2
+l245
+L15
+VNc^I6MfSBn0E1^M_VMZQL1
+!s100 Xc<iTV5C1JJ2a9o34:b9M0
 R6
 32
-R44
-!i10b 1
 R45
+!i10b 1
 R46
 R47
+R48
 !i113 1
 R9
 R10
-Enodemerger_tb
-Z48 w1733635157
+Enodegenerator
+Z49 w1733506482
+R0
+R25
+R1
+R2
+R3
+Z50 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeGen.vhd
+Z51 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeGen.vhd
+l0
+L8
+Vca`?:<7N;CXzmke>Z<d1A3
+!s100 2N=[Mm76XIc[2OWkaY:km3
+R6
+32
+Z52 !s110 1733506485
+!i10b 1
+Z53 !s108 1733506485.000000
+Z54 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeGen.vhd|
+Z55 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeGen.vhd|
+!i113 1
+R9
+R10
+Abehavioral
+R0
+R25
+R1
+R2
+DEx4 work 13 nodegenerator 0 22 ca`?:<7N;CXzmke>Z<d1A3
+l45
+L19
+VDoT=P`?JA0iS3E2DN81Q:2
+!s100 JN:26Kjge`oTP=G5?0HRK2
+R6
+32
+R52
+!i10b 1
+R53
+R54
+R55
+!i113 1
+R9
+R10
+Enodemerger
+Z56 w1733662261
 R0
 R1
 R2
 R3
-Z49 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge_TB.vhd
-Z50 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge_TB.vhd
+Z57 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge.vhd
+Z58 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge.vhd
+l0
+L6
+V=o8LZd6RRm^?C4U14faLJ1
+!s100 h[z@gKj;NJ1c8mnVfo`aO3
+R6
+32
+Z59 !s110 1733662271
+!i10b 1
+Z60 !s108 1733662271.000000
+Z61 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge.vhd|
+Z62 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge.vhd|
+!i113 1
+R9
+R10
+Abehavioral
+R0
+R1
+R2
+DEx4 work 10 nodemerger 0 22 =o8LZd6RRm^?C4U14faLJ1
+l95
+L19
+V1mP5g9ad[hOH]N<79IR`:0
+!s100 2W@7O:5kfc[R``OM`Vd_E0
+R6
+32
+R59
+!i10b 1
+R60
+R61
+R62
+!i113 1
+R9
+R10
+Enodemerger_tb
+Z63 w1733635157
+R0
+R1
+R2
+R3
+Z64 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge_TB.vhd
+Z65 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge_TB.vhd
 l0
 L6
 VW07P==J=2nC9XL2fbKe[o2
 !s100 Y3b6P3EN:hI6cVeeTbhm83
 R6
 32
-Z51 !s110 1733635160
+Z66 !s110 1733635160
 !i10b 1
-Z52 !s108 1733635160.000000
-Z53 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge_TB.vhd|
-Z54 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge_TB.vhd|
+Z67 !s108 1733635160.000000
+Z68 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge_TB.vhd|
+Z69 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge_TB.vhd|
 !i113 1
 R9
 R10
@@ -273,33 +353,33 @@ VzF=lRHbKj1Gd@CKC]j<E21
 !s100 ZEUHa]_>107F`En1NnA4=3
 R6
 32
-R51
+R66
 !i10b 1
-R52
-R53
-R54
+R67
+R68
+R69
 !i113 1
 R9
 R10
 Enodesorter
-Z55 w1733511110
+Z70 w1733511110
 R0
 R1
 R2
 R3
-Z56 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort.vhd
-Z57 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort.vhd
+Z71 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort.vhd
+Z72 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort.vhd
 l0
 L5
 V7Nf`dl91Mg<[CcK6O?KVU0
 !s100 DQ_4Bleh?n6@2LW?7S4;Q1
 R6
 32
-Z58 !s110 1733578756
+Z73 !s110 1733578756
 !i10b 1
-Z59 !s108 1733578756.000000
-Z60 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort.vhd|
-Z61 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort.vhd|
+Z74 !s108 1733578756.000000
+Z75 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort.vhd|
+Z76 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort.vhd|
 !i113 1
 R9
 R10
@@ -314,33 +394,33 @@ V2@GSb2[<H?[4MD5^5]`ZO0
 !s100 P1o>9=mcBTdeKBIa1CT<H2
 R6
 32
-R58
+R73
 !i10b 1
-R59
-R60
-R61
+R74
+R75
+R76
 !i113 1
 R9
 R10
 Enodesorter_tb
-Z62 w1733509297
+Z77 w1733509297
 R0
 R1
 R2
 R3
-Z63 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort_TB.vhd
-Z64 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort_TB.vhd
+Z78 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort_TB.vhd
+Z79 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort_TB.vhd
 l0
 L6
 VY`gSh`d>JoN=en<Rli4Gj2
 !s100 d6WQBT3K@MH4eLoM`g^8Y0
 R6
 32
-Z65 !s110 1733509300
+Z80 !s110 1733509300
 !i10b 1
-Z66 !s108 1733509300.000000
-Z67 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort_TB.vhd|
-Z68 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort_TB.vhd|
+Z81 !s108 1733509300.000000
+Z82 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort_TB.vhd|
+Z83 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort_TB.vhd|
 !i113 1
 R9
 R10
@@ -355,38 +435,38 @@ VWbWTPLL3T_Df:Uk_9fm^i1
 !s100 R`>nMec;;9K@h9z3H4O0T2
 R6
 32
-R65
+R80
 !i10b 1
-R66
-R67
-R68
+R81
+R82
+R83
 !i113 1
 R9
 R10
 Ereader
-Z69 w1733245888
-R18
+Z84 w1733245888
+R25
 R1
 R2
 R3
-Z70 8C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Reader.vhd
-Z71 FC:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Reader.vhd
+Z85 8C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Reader.vhd
+Z86 FC:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Reader.vhd
 l0
 L6
 V_I[Ec1kRUC`_0?P<VFUKR0
 !s100 PCLI:FzXB`l@V23I>aE@L1
 R6
 32
-Z72 !s110 1733318578
+Z87 !s110 1733318578
 !i10b 1
-Z73 !s108 1733318578.000000
-Z74 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Reader.vhd|
-Z75 !s107 C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Reader.vhd|
+Z88 !s108 1733318578.000000
+Z89 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Reader.vhd|
+Z90 !s107 C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Reader.vhd|
 !i113 1
 R9
 R10
 Abehavioral
-R18
+R25
 R1
 R2
 DEx4 work 6 reader 0 22 _I[Ec1kRUC`_0?P<VFUKR0
@@ -396,17 +476,17 @@ V_U9@EA6mNZRFjVBPigh9U0
 !s100 K4Y]Q=SAYL9giF?BG2om>2
 R6
 32
-R72
+R87
 !i10b 1
-R73
-R74
-R75
+R88
+R89
+R90
 !i113 1
 R9
 R10
 Ereadersorter
-Z76 w1733321642
-R18
+Z91 w1733321642
+R25
 R1
 R2
 R3
@@ -418,16 +498,16 @@ VUYgFkhd86gN;m6Z2On:`c2
 !s100 BSndOKi1`We8n6EHmPiKE0
 R6
 32
-Z77 !s110 1733322025
+Z92 !s110 1733322025
 !i10b 1
-Z78 !s108 1733322025.000000
+Z93 !s108 1733322025.000000
 R7
 R8
 !i113 1
 R9
 R10
 Abehavioral
-R18
+R25
 R1
 R2
 DEx4 work 12 readersorter 0 22 UYgFkhd86gN;m6Z2On:`c2
@@ -437,18 +517,18 @@ V;Ncb@NjH9Li^TV<1JUbzl0
 !s100 zAjc5?g^UEf43RdRBF8MN0
 R6
 32
-R77
+R92
 !i10b 1
-R78
+R93
 R7
 R8
 !i113 1
 R9
 R10
 Ereadersorterx
-Z79 w1733327725
+Z94 w1733327725
 R0
-R18
+R25
 R1
 R2
 R3
@@ -460,9 +540,9 @@ VeFX=Abgb`?8daV=_ZJSTg0
 !s100 N7aFk]TY9VJd=B5BalYIT1
 R6
 32
-Z80 !s110 1733327734
+Z95 !s110 1733327734
 !i10b 1
-Z81 !s108 1733327734.000000
+Z96 !s108 1733327734.000000
 R7
 R8
 !i113 1
@@ -470,7 +550,7 @@ R9
 R10
 Abehavioral
 R0
-R18
+R25
 R1
 R2
 DEx4 work 13 readersorterx 0 22 eFX=Abgb`?8daV=_ZJSTg0
@@ -480,59 +560,59 @@ V4zbNJW:`A<[]UAIL:FfY[2
 !s100 GeI@7f0ok131nm2EaGcb03
 R6
 32
-R80
+R95
 !i10b 1
-R81
+R96
 R7
 R8
 !i113 1
 R9
 R10
 Ereadsort
-Z82 w1733504729
+Z97 w1733504729
 R0
-R18
+R25
 R1
 R2
 R3
-Z83 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/ReadSort.vhd
-Z84 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/ReadSort.vhd
+Z98 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/ReadSort.vhd
+Z99 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/ReadSort.vhd
 l0
 L7
 Vg_<QhE[4=dVG4H9jLJ^Bz2
 !s100 YJdAYbDWeA:3TNE6I72eb0
 R6
 32
-Z85 !s110 1733504731
+Z100 !s110 1733504731
 !i10b 1
-Z86 !s108 1733504731.000000
-Z87 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/ReadSort.vhd|
-Z88 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/ReadSort.vhd|
+Z101 !s108 1733504731.000000
+Z102 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/ReadSort.vhd|
+Z103 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/ReadSort.vhd|
 !i113 1
 R9
 R10
 Abehavioral
 R0
-R18
+R25
 R1
 R2
-R19
+R26
 l41
 L18
 VjX3;Oc?@ZCeHDA@KlWZ7_3
 !s100 eZoRVhY^>AJTiN2BlYFS=1
 R6
 32
-R85
+R100
 !i10b 1
-R86
-R87
-R88
+R101
+R102
+R103
 !i113 1
 R9
 R10
 Esorter
-Z89 w1733246542
+Z104 w1733246542
 R0
 R1
 R2
@@ -569,6 +649,136 @@ R6
 !s108 1733246120.000000
 R7
 R8
+!i113 1
+R9
+R10
+Ptreepackage
+R25
+R0
+R1
+R2
+w1733657420
+R3
+Z105 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TreeTraverser.vhd
+Z106 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TreeTraverser.vhd
+l0
+L8
+Von::>I=V@I:EECkcCcM=Q3
+!s100 7zSnbc;>Q7VHI[j<=]BAE1
+R6
+32
+!s110 1733657422
+!i10b 1
+!s108 1733657422.000000
+Z107 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TreeTraverser.vhd|
+Z108 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TreeTraverser.vhd|
+!i113 1
+R9
+R10
+Etreetraverser
+Z109 w1733660021
+R25
+R0
+R1
+R2
+R3
+R105
+R106
+l0
+L7
+V39=bTXIUi1[M9LjXQ]2g60
+!s100 TgTO4L4l[2@l3WVYK_Kle3
+R6
+32
+Z110 !s110 1733660024
+!i10b 1
+Z111 !s108 1733660024.000000
+R107
+R108
+!i113 1
+R9
+R10
+Abehavioral
+R25
+R0
+R1
+R2
+DEx4 work 13 treetraverser 0 22 39=bTXIUi1[M9LjXQ]2g60
+l62
+L28
+VHEemN;k`1Yf?ed2APJEdN3
+!s100 ;gAobL6O@z<hQ3i4D5JRj2
+R6
+32
+R110
+!i10b 1
+R111
+R107
+R108
+!i113 1
+R9
+R10
+Etreetraverser_tb
+Z112 w1733660416
+R25
+R0
+R1
+R2
+R3
+Z113 8C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TreeTraverser_TB.vhd
+Z114 FC:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TreeTraverser_TB.vhd
+l0
+L7
+VhiH=BYI_55Vc`d2OSRl701
+!s100 g10GFSagkUS8FRYG^2[QS3
+R6
+32
+Z115 !s110 1733660424
+!i10b 1
+Z116 !s108 1733660424.000000
+Z117 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TreeTraverser_TB.vhd|
+Z118 !s107 C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/TreeTraverser_TB.vhd|
+!i113 1
+R9
+R10
+Abehavioral
+R25
+R0
+R1
+R2
+DEx4 work 16 treetraverser_tb 0 22 hiH=BYI_55Vc`d2OSRl701
+l69
+L10
+V4h7JjC;0INLLA87MmNLMB2
+!s100 7C>APz@L=UXBCQlgMCKoh2
+R6
+32
+R115
+!i10b 1
+R116
+R117
+R118
+!i113 1
+R9
+R10
+Ptreetypes
+R1
+R2
+w1733657250
+R3
+R105
+R106
+l0
+L4
+VoFSCIG8JOX3^9G4<^3BWg0
+!s100 oz`GU>JiMAGVg^_6?YcZ>3
+R6
+32
+!s110 1733657252
+!i10b 1
+!s108 1733657252.000000
+R107
+R108
 !i113 1
 R9
 R10

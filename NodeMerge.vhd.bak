@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
+use STD.TEXTIO.ALL;
 
 entity NodeMerger is
     Port (
@@ -26,6 +27,45 @@ architecture Behavioral of NodeMerger is
     end record;
 
     type state_type is (idle_state, load_state, sort_state, merge_state, done_state);
+    file tree_file : text open write_mode is "HuffmanArray.txt";
+
+    procedure write_node_info(
+        file f: text;
+        index: in integer;
+        node: in node_type) is
+        variable l: line;
+        variable temp_str: string(1 to 1);
+    begin
+        -- Write index
+        write(l, integer'image(index), right, 1);
+        write(l, string'(","));
+        
+        -- Write character
+        if node.is_leaf then
+            temp_str(1) := character'val(to_integer(unsigned(node.character)));
+            write(l, temp_str, right, 1);
+        else
+            write(l, string'("-"), right, 1);
+        end if;
+        write(l, string'(","));
+        
+        -- Write frequency
+        write(l, integer'image(node.frequency), right, 1);
+        write(l, string'(","));
+        
+        -- Write left child
+        write(l, integer'image(node.left_child), right, 1);
+        write(l, string'(","));
+        
+        -- Write right child
+        write(l, integer'image(node.right_child), right, 1);
+        write(l, string'(","));
+        
+        -- Write is_leaf
+        write(l, boolean'image(node.is_leaf), right, 1);
+        
+        writeline(f, l);
+    end procedure;
 
     constant NUM_LEAF_NODES : integer := 8;
     constant MAX_NODES      : integer := (2 * NUM_LEAF_NODES) - 1;
@@ -48,6 +88,7 @@ architecture Behavioral of NodeMerger is
     signal next_node_index : integer := 0;
     signal root_index_sig : integer := 0;
     signal received_first_node : boolean := false;
+    signal write_complete : boolean := false;
 
     constant SHOW_DEBUG : boolean := true;
 
@@ -60,6 +101,7 @@ begin
         variable i, j : integer;
         variable temp_indices : index_array;
         variable temp_node : node_type;
+        variable temp_nodes : node_array;
 
     begin
         if reset = '1' then
@@ -111,6 +153,8 @@ begin
                         nodes(next_node_index).character <= sorted_char;
                         nodes(next_node_index).frequency <= sorted_freq;
                         nodes(next_node_index).is_leaf <= true;
+                        nodes(next_node_index).left_child <= -1;  -- Added
+                        nodes(next_node_index).right_child <= -1; -- Added
                         sorted_indices(next_node_index) <= next_node_index;
                         next_node_index <= next_node_index + 1;
                     end if;
@@ -164,25 +208,31 @@ begin
                         min1_index := sorted_indices(0);
                         min2_index := sorted_indices(1);
                         
-                        if SHOW_DEBUG then
-                            report "Merging: Node " & integer'image(min1_index) & 
-                                " (Freq=" & integer'image(nodes(min1_index).frequency) & 
-                                ") and Node " & integer'image(min2_index) & 
-                                " (Freq=" & integer'image(nodes(min2_index).frequency) & 
-                                ") -> New Node " & integer'image(next_node_index) &
-                                " (Total Freq=" & integer'image(nodes(min1_index).frequency + nodes(min2_index).frequency) &
-                                ", Left=" & integer'image(min1_index) & 
-                                ", Right=" & integer'image(min2_index) & ")";
-                        end if;
-
-                        -- Create new merged node using variables first
-                        temp_node.frequency := nodes(min1_index).frequency + nodes(min2_index).frequency;
+                        -- Create temporary node array to track current frequencies
+                        temp_nodes := nodes;
+                        
+                        -- Calculate new merged node
+                        temp_node.frequency := temp_nodes(min1_index).frequency + temp_nodes(min2_index).frequency;
                         temp_node.left_child := min1_index;
                         temp_node.right_child := min2_index;
                         temp_node.is_leaf := false;
                         temp_node.character := (others => '0');
                         
-                        -- Assign to signal
+                        -- Update temp array with new node
+                        temp_nodes(next_node_index) := temp_node;
+                        
+                        if SHOW_DEBUG then
+                            report "Merging: Node " & integer'image(min1_index) & 
+                                " (Freq=" & integer'image(temp_nodes(min1_index).frequency) & 
+                                ") and Node " & integer'image(min2_index) & 
+                                " (Freq=" & integer'image(temp_nodes(min2_index).frequency) & 
+                                ") -> New Node " & integer'image(next_node_index) &
+                                " (Total Freq=" & integer'image(temp_node.frequency) &
+                                ", Left=" & integer'image(min1_index) & 
+                                ", Right=" & integer'image(min2_index) & ")";
+                        end if;
+                        
+                        -- Assign to actual nodes array
                         nodes(next_node_index) <= temp_node;
                         
                         -- Update indices array
@@ -196,29 +246,26 @@ begin
                         -- Add new merged node
                         temp_indices(sorted_size - 2) := next_node_index;
                         
-                        -- Insertion sort with VHDL-compliant loop
-                        for i in 1 to sorted_size - 2 loop
-                            temp_index := temp_indices(i);
-                            j := i - 1;
-                            -- Use nested loop instead of while
-                            for k in 0 to i-1 loop
-                                exit when j < 0;
-                                exit when not (nodes(temp_indices(j)).frequency > nodes(temp_index).frequency);
-                                temp_indices(j + 1) := temp_indices(j);
-                                j := j - 1;
+                        -- Sort using frequencies from temp_nodes
+                        for i in 0 to sorted_size - 3 loop
+                            for j in 0 to sorted_size - i - 3 loop
+                                if temp_nodes(temp_indices(j)).frequency > temp_nodes(temp_indices(j + 1)).frequency then
+                                    temp_index := temp_indices(j);
+                                    temp_indices(j) := temp_indices(j + 1);
+                                    temp_indices(j + 1) := temp_index;
+                                end if;
                             end loop;
-                            temp_indices(j + 1) := temp_index;
                         end loop;
-
+                
                         if SHOW_DEBUG then
                             report "After merge and sort:";
                             for i in 0 to sorted_size - 2 loop
                                 report "Index " & integer'image(i) & ": Node " & 
                                     integer'image(temp_indices(i)) & 
-                                    " (Freq = " & integer'image(nodes(temp_indices(i)).frequency) & ")";
+                                    " (Freq = " & integer'image(temp_nodes(temp_indices(i)).frequency) & ")";
                             end loop;
                         end if;
-                    
+                        
                         sorted_indices <= temp_indices;
                         sorted_size <= sorted_size - 1;
                         next_node_index <= next_node_index + 1;
@@ -233,9 +280,15 @@ begin
                         state <= done_state;
                     end if;
 
-                when done_state =>
-                    merge_done <= '1';
-
+                    when done_state =>
+                    if not write_complete then
+                        for i in 0 to next_node_index-1 loop
+                            write_node_info(tree_file, i, nodes(i));
+                        end loop;
+                        write_complete <= true;
+                        merge_done <= '1';
+                    end if;
+                
                 when others =>
                     state <= done_state;
             end case;
