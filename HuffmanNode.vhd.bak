@@ -54,13 +54,19 @@ architecture Behavioral of HuffmanProcessor is
         );
     end component;
 
-    -- Internal signals (existing)
+    component HuffmanTranslator is
+        Port (
+            clk         : in  STD_LOGIC;
+            reset       : in  STD_LOGIC;
+            start       : in  STD_LOGIC;
+            done        : out STD_LOGIC
+        );
+    end component;
+    
     signal gen_node_ready : STD_LOGIC;
     signal gen_node_char  : STD_LOGIC_VECTOR(7 downto 0);
     signal gen_node_freq  : INTEGER;
     signal gen_done       : STD_LOGIC;
-    
-    -- Add signals for NodeSorter to NodeMerger connection
     signal sort_ready_int : STD_LOGIC;
     signal sorted_char_int : STD_LOGIC_VECTOR(7 downto 0);
     signal sorted_freq_int : INTEGER;
@@ -68,12 +74,16 @@ architecture Behavioral of HuffmanProcessor is
     signal merge_done_int : STD_LOGIC;
     signal root_index_int : INTEGER;
 
-    -- Updated state machine
-    type state_type is (gen_phase, sort_phase, merge_phase, done_state);
+    -- Add translator signals
+    signal trans_start    : STD_LOGIC := '0';
+    signal trans_done     : STD_LOGIC;
+
+    -- Update state machine to include translation
+    type state_type is (gen_phase, sort_phase, merge_phase, trans_phase, done_state);
     signal state : state_type := gen_phase;
 
 begin
-    -- Instantiate NodeGenerator (unchanged)
+    -- Existing component instances remain the same
     node_gen: NodeGenerator port map (
         clk        => clk,
         reset      => reset,
@@ -83,7 +93,6 @@ begin
         done       => gen_done
     );
 
-    -- Instantiate NodeSorter (modified)
     node_sort: NodeSorter port map (
         clk         => clk,
         reset       => reset,
@@ -97,7 +106,6 @@ begin
         sort_done   => sort_done_int
     );
 
-    -- Add NodeMerger instance
     node_merge: NodeMerger port map (
         clk         => clk,
         reset       => reset,
@@ -109,15 +117,24 @@ begin
         root_index  => root_index_int
     );
 
+    -- Add translator instance
+    translator: HuffmanTranslator port map (
+        clk         => clk,
+        reset       => reset,
+        start       => trans_start,
+        done        => trans_done
+    );
+
     -- Connect outputs
     root_index <= root_index_int;
 
-    -- Control process
+    -- Updated control process
     process(clk, reset)
     begin
         if reset = '1' then
             state <= gen_phase;
             done <= '0';
+            trans_start <= '0';
         elsif rising_edge(clk) then
             case state is
                 when gen_phase =>
@@ -132,8 +149,14 @@ begin
 
                 when merge_phase =>
                     if merge_done_int = '1' then
+                        state <= trans_phase;
+                        trans_start <= '1';  -- Start translation phase
+                    end if;
+
+                when trans_phase =>
+                    trans_start <= '0';  -- Reset start signal
+                    if trans_done = '1' then
                         state <= done_state;
-                        done <= '1';
                     end if;
 
                 when done_state =>

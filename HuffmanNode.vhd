@@ -7,12 +7,11 @@ entity HuffmanProcessor is
         clk         : in  STD_LOGIC;
         reset       : in  STD_LOGIC;
         done        : out STD_LOGIC;
-        root_index  : out INTEGER  -- Add output for final root index
+        root_index  : out INTEGER 
     );
 end HuffmanProcessor;
 
 architecture Behavioral of HuffmanProcessor is
-    -- NodeGenerator component (unchanged)
     component NodeGenerator is
         Port (
             clk        : in  STD_LOGIC;
@@ -24,7 +23,6 @@ architecture Behavioral of HuffmanProcessor is
         );
     end component;
 
-    -- NodeSorter component (unchanged)
     component NodeSorter is
         Port (
             clk         : in  STD_LOGIC;
@@ -40,7 +38,6 @@ architecture Behavioral of HuffmanProcessor is
         );
     end component;
 
-    -- Add NodeMerger component
     component NodeMerger is
         Port (
             clk         : in  STD_LOGIC;
@@ -73,17 +70,13 @@ architecture Behavioral of HuffmanProcessor is
     signal sort_done_int  : STD_LOGIC;
     signal merge_done_int : STD_LOGIC;
     signal root_index_int : INTEGER;
-
-    -- Add translator signals
     signal trans_start    : STD_LOGIC := '0';
     signal trans_done     : STD_LOGIC;
 
-    -- Update state machine to include translation
     type state_type is (gen_phase, sort_phase, merge_phase, trans_phase, done_state);
     signal state : state_type := gen_phase;
 
 begin
-    -- Existing component instances remain the same
     node_gen: NodeGenerator port map (
         clk        => clk,
         reset      => reset,
@@ -117,7 +110,6 @@ begin
         root_index  => root_index_int
     );
 
-    -- Add translator instance
     translator: HuffmanTranslator port map (
         clk         => clk,
         reset       => reset,
@@ -125,10 +117,8 @@ begin
         done        => trans_done
     );
 
-    -- Connect outputs
     root_index <= root_index_int;
 
-    -- Updated control process
     process(clk, reset)
     begin
         if reset = '1' then
@@ -150,11 +140,11 @@ begin
                 when merge_phase =>
                     if merge_done_int = '1' then
                         state <= trans_phase;
-                        trans_start <= '1';  -- Start translation phase
+                        trans_start <= '1'; 
                     end if;
 
                 when trans_phase =>
-                    trans_start <= '0';  -- Reset start signal
+                    trans_start <= '0';
                     if trans_done = '1' then
                         state <= done_state;
                     end if;

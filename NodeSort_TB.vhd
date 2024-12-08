@@ -7,7 +7,7 @@ entity NodeMerger_tb is
 end NodeMerger_tb;
 
 architecture Behavioral of NodeMerger_tb is
-    -- Component declaration
+  
     component NodeMerger is
         Port (
             clk           : in  std_logic;
@@ -21,7 +21,6 @@ architecture Behavioral of NodeMerger_tb is
         );
     end component;
 
-    -- Test signals
     signal clk           : std_logic := '0';
     signal reset         : std_logic := '0';
     signal sorted_char   : std_logic_vector(7 downto 0) := (others => '0');
@@ -31,16 +30,13 @@ architecture Behavioral of NodeMerger_tb is
     signal merge_done    : std_logic;
     signal root_index    : integer;
 
-    -- Clock period definitions
     constant clk_period : time := 10 ns;
 
-    -- Test data type
     type test_data_type is record
         char : character;
         freq : integer;
     end record;
 
-    -- Test data for "supersurvivor"
     type test_array is array (0 to 7) of test_data_type;
     constant test_data : test_array := (
         ('r', 3),
@@ -54,7 +50,6 @@ architecture Behavioral of NodeMerger_tb is
     );
 
 begin
-    -- Instantiate the Unit Under Test (UUT)
     uut: NodeMerger port map (
         clk         => clk,
         reset       => reset,
@@ -66,7 +61,6 @@ begin
         root_index  => root_index
     );
 
-    -- Clock process
     clk_process: process
     begin
         clk <= '0';
@@ -75,22 +69,17 @@ begin
         wait for clk_period/2;
     end process;
 
-    -- Stimulus process
     stim_proc: process
     begin
-        -- Reset
         reset <= '1';
         wait for clk_period * 2;
         reset <= '0';
         wait for clk_period * 2;
     
-        -- Load nodes
         for i in test_data'range loop
-            -- Prepare data
             sorted_char <= std_logic_vector(to_unsigned(character'pos(test_data(i).char), 8));
             sorted_freq <= test_data(i).freq;
             
-            -- Wait for next clock cycle before asserting sort_ready
             wait until rising_edge(clk);
             sort_ready <= '1';
             
@@ -100,22 +89,17 @@ begin
             wait until rising_edge(clk);
             sort_ready <= '0';
             
-            -- Wait two cycles between nodes
             wait for clk_period * 2;
         end loop;
     
-        -- Wait before asserting sort_done
         wait for clk_period * 4;
         
-        -- Signal end of node loading
         sort_done <= '1';
         wait for clk_period;
         sort_done <= '0';
     
-        -- Wait for completion
         wait until merge_done = '1';
         
-        -- Final verification
         wait for clk_period * 5;
         wait;
     end process;

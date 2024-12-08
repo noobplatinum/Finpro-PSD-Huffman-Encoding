@@ -13,7 +13,7 @@ entity HuffmanTranslator is
 end HuffmanTranslator;
 
 architecture Behavioral of HuffmanTranslator is
-    -- Node type definition
+    -- Node type
     type node_type is record
         character    : std_logic_vector(7 downto 0);
         frequency    : integer;
@@ -22,23 +22,20 @@ architecture Behavioral of HuffmanTranslator is
         is_leaf      : boolean;
     end record;
     
-    -- Dynamic arrays
+    -- Dynamic array
     type node_array is array (natural range <>) of node_type;
     type path_array is array (natural range <>) of std_logic;
     
-    -- State machine with preprocessing
     type state_type is (idle, counting, reading, translating, done_state);
     signal state : state_type := idle;
     
-    -- Storage with initial sizes
-    signal nodes : node_array(0 to 511);  -- Allow up to 256 characters (512 total nodes)
-    signal path : path_array(0 to 511);   -- Max possible path length
+    signal nodes : node_array(0 to 511);  -- Max 256 characters (512 node)
+    signal path : path_array(0 to 511);   -- Max length
     signal path_length : integer := 0;
     signal root_index : integer := 0;
     signal num_nodes : integer := 0;
     signal max_depth : integer := 0;
     
-    -- File handling
     file tree_file : text;
     file orig_file : text;
     file output_file : text open write_mode is "FinalOutput";
@@ -52,25 +49,25 @@ architecture Behavioral of HuffmanTranslator is
         end if;
     end function;
 
-    -- Helper function to calculate tree height
+    -- Calc tree height
     function calculate_tree_height(
         nodes_arr: in node_array;
         node_idx: in integer) return integer is
         variable left_height, right_height : integer;
     begin
-        -- Bounds checking
+        -- Boundary
         if node_idx < 0 or node_idx > 511 then
             report "Warning: Node index " & integer'image(node_idx) & " out of bounds" severity warning;
             return 0;
         end if;
 
-        -- Base cases
+        -- Base
         if node_idx = -1 then
             return 0;
         elsif nodes_arr(node_idx).is_leaf then
             return 0;
         else
-            -- Check child nodes exist within bounds
+            -- Check child node
             if nodes_arr(node_idx).left_child >= 0 and nodes_arr(node_idx).left_child <= 511 then
                 left_height := calculate_tree_height(nodes_arr, nodes_arr(node_idx).left_child);
             else
@@ -83,7 +80,6 @@ architecture Behavioral of HuffmanTranslator is
                 right_height := 0;
             end if;
 
-            -- Protect against overflow
             if left_height < 0 or right_height < 0 then
                 report "Warning: Height calculation overflow detected" severity warning;
                 return 0;
@@ -93,7 +89,7 @@ architecture Behavioral of HuffmanTranslator is
         end if;
     end function;
     
-    -- Helper procedure to write translation
+    -- Translasi
     procedure write_translation(
         file f: text;
         char: in std_logic_vector(7 downto 0);
@@ -140,22 +136,22 @@ architecture Behavioral of HuffmanTranslator is
             result_len := result_len + 1;
             result(result_len) := in_char;
             
-            -- Reset for new character search
+            -- Reset for new char
             curr_node := root;
             path_len := 0;
             found := false;
             
-            -- Find path to character
+            -- Find path to char
             while not found loop
                 if nodes_arr(curr_node).is_leaf then
                     if character'val(to_integer(unsigned(nodes_arr(curr_node).character))) = in_char then
                         found := true;
                     else
-                        -- Backtrack - remove last path bit and try right path
+                        -- Backtrack - remove last path and try right path
                         while path_len > 0 and temp_path(path_len-1) = '1' loop
                             path_len := path_len - 1;
-                            curr_node := root; -- Reset to root for backtracking
-                            -- Rebuild path up to this point
+                            curr_node := root; -- Reset to root
+                            -- Rebuild path
                             for i in 0 to path_len-1 loop
                                 if temp_path(i) = '0' then
                                     curr_node := nodes_arr(curr_node).left_child;
@@ -201,7 +197,7 @@ architecture Behavioral of HuffmanTranslator is
             end loop;
         end loop;
         
-        -- Write results
+        -- Write result
         write(l_out, result(1 to result_len));
         writeline(output_file, l_out);
         
@@ -210,7 +206,7 @@ architecture Behavioral of HuffmanTranslator is
         writeline(output_file, l_out);
     end procedure;
 
-    -- Recursive traversal procedure
+    -- Recursive traversal
     procedure traverse_tree(
         node_index: in integer;
         curr_path: inout path_array;
@@ -218,13 +214,13 @@ architecture Behavioral of HuffmanTranslator is
         nodes_arr: in node_array) is
     begin
         if nodes_arr(node_index).is_leaf then
-            -- Found leaf node, write translation
+            -- Found leaf node = write translation
             write_translation(output_file, nodes_arr(node_index).character, curr_path, curr_length);
             report "Found translation for " & 
                    character'val(to_integer(unsigned(nodes_arr(node_index).character))) & 
                    " at depth " & integer'image(curr_length);
         else
-            -- Traverse left (0)
+            -- left (0)
             if nodes_arr(node_index).left_child /= -1 then
                 curr_path(curr_length) := '0';
                 curr_length := curr_length + 1;
@@ -232,7 +228,7 @@ architecture Behavioral of HuffmanTranslator is
                 curr_length := curr_length - 1;
             end if;
             
-            -- Traverse right (1)
+            -- right (1)
             if nodes_arr(node_index).right_child /= -1 then
                 curr_path(curr_length) := '1';
                 curr_length := curr_length + 1;
@@ -263,7 +259,7 @@ begin
             case state is
                 when idle =>
                     if start = '1' then
-                        -- First count nodes
+                        -- count nodes
                         file_open(tree_file, "HuffmanArray", read_mode);
                         state <= counting;
                     end if;
@@ -288,7 +284,7 @@ begin
                         read(line_in, node_index);
                         read(line_in, char); -- Skip comma
                         
-                        -- Parse character/dash
+                        -- Parse character
                         read(line_in, char);
                         if char = '-' then
                             nodes(node_index).character <= (others => '0');
@@ -299,16 +295,16 @@ begin
                         end if;
                         
                         -- Parse frequency, left child, right child
-                        read(line_in, char); -- Skip comma
+                        read(line_in, char); -- Skip coma
                         read(line_in, freq);
-                        read(line_in, char); -- Skip comma
+                        read(line_in, char); 
                         read(line_in, left);
-                        read(line_in, char); -- Skip comma
+                        read(line_in, char); 
                         read(line_in, right);
-                        read(line_in, char); -- Skip comma
+                        read(line_in, char); 
                         read(line_in, is_leaf);
                         
-                        -- Assign values
+                        -- Assign val
                         nodes(node_index).frequency <= freq;
                         nodes(node_index).left_child <= left;
                         nodes(node_index).right_child <= right;

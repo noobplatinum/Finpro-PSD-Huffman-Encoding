@@ -82,7 +82,7 @@ begin
 
                 when sort_data =>
                     j := 0;
-                    -- First collect non-zero frequency characters
+                    -- collect non-zero frequency characters
                     for i in 0 to ASCII_RANGE - 1 loop
                         if frequencies(i) > 0 then
                             sorted_chars(j) <= character'val(i);
@@ -91,15 +91,13 @@ begin
                         end if;
                     end loop;
 
-                    -- Then sort them by frequency (bubble sort)
+                    -- bubble sort
                     for i in 0 to j - 2 loop
                         for k in 0 to j - i - 2 loop
                             if sorted_freqs(k) < sorted_freqs(k + 1) then
-                                -- Swap frequencies
                                 temp_freq := sorted_freqs(k);
                                 sorted_freqs(k) <= sorted_freqs(k + 1);
                                 sorted_freqs(k + 1) <= temp_freq;
-                                -- Swap characters
                                 temp_char_var := sorted_chars(k);
                                 sorted_chars(k) <= sorted_chars(k + 1);
                                 sorted_chars(k + 1) <= temp_char_var;

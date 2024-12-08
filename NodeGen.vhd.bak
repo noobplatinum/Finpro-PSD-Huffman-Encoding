@@ -49,7 +49,7 @@ begin
         variable freq_read   : integer;
     begin
         if reset = '1' then
-            -- Reset all signals
+            -- Reset signal
             state       <= read_file;
             total_nodes <= 0;
             node_index  <= 0;
@@ -59,36 +59,36 @@ begin
             case state is
                 when read_file =>
                     if not endfile(input_file) then
-                        -- Read a line from the file
+                        -- Read line
                         readline(input_file, input_line);
                         state <= parse_line;
                     else
-                        state <= done_state; -- No more lines to read
+                        state <= done_state; -- No more line
                     end if;
 
                 when parse_line =>
-                    -- Parse character and frequency from the line
+                    -- Parse character
                     read(input_line, char_read);
                     read(input_line, freq_read);
                     
-                    -- Store data into the node array
+                    -- Store data
                     nodes(total_nodes).character <= char_read;
                     nodes(total_nodes).frequency <= freq_read;
                     nodes(total_nodes).left_child <= -1;
                     nodes(total_nodes).right_child <= -1;
                     nodes(total_nodes).merged <= false;
 
-                    -- Log the parsed data
+                    -- Log
                     report "Character read: " & char_read & ", Frequency read: " & integer'image(freq_read);
 
-                    -- Increment total_nodes
+                    -- Increment
                     total_nodes <= total_nodes + 1;
 
-                    -- Move to create_node state
+                    -- Create_node state
                     state <= create_node;
 
                 when create_node =>
-                    -- Output node data
+                    -- Output data
                     if node_index < total_nodes then
                         node_char <= char_to_slv(nodes(node_index).character);
                         node_freq <= nodes(node_index).frequency;

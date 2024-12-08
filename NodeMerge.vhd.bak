@@ -27,7 +27,7 @@ architecture Behavioral of NodeMerger is
     end record;
 
     type state_type is (idle_state, load_state, sort_state, merge_state, done_state);
-    file tree_file : text open write_mode is "HuffmanArray.txt";
+    file tree_file : text open write_mode is "HuffmanArray";
 
     procedure write_node_info(
         file f: text;

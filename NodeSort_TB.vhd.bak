@@ -1,84 +1,78 @@
+-- NodeMerger_tb.vhd
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
-use STD.TEXTIO.ALL;
 
-entity NodeSorter_tb is
-end NodeSorter_tb;
+entity NodeMerger_tb is
+end NodeMerger_tb;
 
-architecture Behavioral of NodeSorter_tb is
+architecture Behavioral of NodeMerger_tb is
     -- Component declaration
-    component NodeSorter is
+    component NodeMerger is
         Port (
-            clk           : in  STD_LOGIC;
-            reset         : in  STD_LOGIC;
-            node_ready    : in  STD_LOGIC;
-            node_char     : in  STD_LOGIC_VECTOR(7 downto 0);
-            node_freq     : in  INTEGER;
-            input_done    : in  STD_LOGIC;
-            sort_ready    : out STD_LOGIC;
-            sorted_char   : out STD_LOGIC_VECTOR(7 downto 0);
-            sorted_freq   : out INTEGER;
-            sort_done     : out STD_LOGIC
+            clk           : in  std_logic;
+            reset         : in  std_logic;
+            sorted_char   : in  std_logic_vector(7 downto 0);
+            sorted_freq   : in  integer;
+            sort_ready    : in  std_logic;
+            sort_done     : in  std_logic;
+            merge_done    : out std_logic;
+            root_index    : out integer
         );
     end component;
 
     -- Test signals
-    signal clk           : STD_LOGIC := '0';
-    signal reset         : STD_LOGIC := '0';
-    signal node_ready    : STD_LOGIC := '0';
-    signal node_char     : STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
-    signal node_freq     : INTEGER := 0;
-    signal input_done    : STD_LOGIC := '0';
-    signal sort_ready    : STD_LOGIC;
-    signal sorted_char   : STD_LOGIC_VECTOR(7 downto 0);
-    signal sorted_freq   : INTEGER;
-    signal sort_done     : STD_LOGIC;
+    signal clk           : std_logic := '0';
+    signal reset         : std_logic := '0';
+    signal sorted_char   : std_logic_vector(7 downto 0) := (others => '0');
+    signal sorted_freq   : integer := 0;
+    signal sort_ready    : std_logic := '0';
+    signal sort_done     : std_logic := '0';
+    signal merge_done    : std_logic;
+    signal root_index    : integer;
 
-    -- Clock period definition
-    constant CLK_PERIOD : time := 1 ms;
+    -- Clock period definitions
+    constant clk_period : time := 10 ns;
 
     -- Test data type
-    type test_data is record
-        char    : character;
-        freq    : integer;
+    type test_data_type is record
+        char : character;
+        freq : integer;
     end record;
 
-    -- Test vector
-    type test_array is array (0 to 7) of test_data;
-    constant TEST_VECTOR : test_array := (
-        ('e', 1),
-        ('i', 1),
-        ('o', 1),
-        ('p', 1),
+    -- Test data for "supersurvivor"
+    type test_array is array (0 to 7) of test_data_type;
+    constant test_data : test_array := (
         ('r', 3),
         ('s', 2),
         ('u', 2),
-        ('v', 2)
+        ('v', 2),
+        ('e', 1),
+        ('i', 1),
+        ('o', 1),
+        ('p', 1)
     );
 
 begin
-    -- Instantiate NodeSorter
-    uut: NodeSorter port map (
-        clk => clk,
-        reset => reset,
-        node_ready => node_ready,
-        node_char => node_char,
-        node_freq => node_freq,
-        input_done => input_done,
-        sort_ready => sort_ready,
+    -- Instantiate the Unit Under Test (UUT)
+    uut: NodeMerger port map (
+        clk         => clk,
+        reset       => reset,
         sorted_char => sorted_char,
         sorted_freq => sorted_freq,
-        sort_done => sort_done
+        sort_ready  => sort_ready,
+        sort_done   => sort_done,
+        merge_done  => merge_done,
+        root_index  => root_index
     );
 
     -- Clock process
     clk_process: process
     begin
         clk <= '0';
-        wait for CLK_PERIOD/2;
+        wait for clk_period/2;
         clk <= '1';
-        wait for CLK_PERIOD/2;
+        wait for clk_period/2;
     end process;
 
     -- Stimulus process
@@ -86,37 +80,43 @@ begin
     begin
         -- Reset
         reset <= '1';
-        wait for CLK_PERIOD*2;
+        wait for clk_period * 2;
         reset <= '0';
-        wait for CLK_PERIOD;
-
-        -- Input test vector
-        for i in TEST_VECTOR'range loop
-            node_ready <= '1';
-            node_char <= std_logic_vector(to_unsigned(character'pos(TEST_VECTOR(i).char), 8));
-            node_freq <= TEST_VECTOR(i).freq;
+        wait for clk_period * 2;
+    
+        -- Load nodes
+        for i in test_data'range loop
+            -- Prepare data
+            sorted_char <= std_logic_vector(to_unsigned(character'pos(test_data(i).char), 8));
+            sorted_freq <= test_data(i).freq;
             
-            wait for CLK_PERIOD;
-            report "Sending: Char = " & TEST_VECTOR(i).char & 
-                   ", Freq = " & integer'image(TEST_VECTOR(i).freq);
+            -- Wait for next clock cycle before asserting sort_ready
+            wait until rising_edge(clk);
+            sort_ready <= '1';
+            
+            report "Sending node: Char = " & test_data(i).char & 
+                   ", Freq = " & integer'image(test_data(i).freq);
+                   
+            wait until rising_edge(clk);
+            sort_ready <= '0';
+            
+            -- Wait two cycles between nodes
+            wait for clk_period * 2;
         end loop;
-
-        node_ready <= '0';
-        input_done <= '1';
-        wait for CLK_PERIOD;
-        input_done <= '0';
-
-        -- Wait for sorting and output
-        while sort_done /= '1' loop
-            if sort_ready = '1' then
-                report "Received sorted: Char = " & 
-                       character'val(to_integer(unsigned(sorted_char))) &
-                       ", Freq = " & integer'image(sorted_freq);
-            end if;
-            wait for CLK_PERIOD;
-        end loop;
-
-        report "Test completed";
+    
+        -- Wait before asserting sort_done
+        wait for clk_period * 4;
+        
+        -- Signal end of node loading
+        sort_done <= '1';
+        wait for clk_period;
+        sort_done <= '0';
+    
+        -- Wait for completion
+        wait until merge_done = '1';
+        
+        -- Final verification
+        wait for clk_period * 5;
         wait;
     end process;
 

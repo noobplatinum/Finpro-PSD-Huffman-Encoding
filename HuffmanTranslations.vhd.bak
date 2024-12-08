@@ -124,12 +124,13 @@ architecture Behavioral of HuffmanTranslator is
         variable l_in, l_out: line;
         variable in_char: character;
         variable curr_node: integer;
-        variable result: string(1 to 1024);  -- For original text
-        variable binary: string(1 to 4096);  -- For binary translation
+        variable result: string(1 to 1024);
+        variable binary: string(1 to 4096);
         variable result_len: integer := 0;
         variable binary_len: integer := 0;
         variable temp_path: path_array(0 to 511);
         variable path_len: integer;
+        variable found: boolean;
     begin
         readline(input_file, l_in);
         write(l_out, string'("Original text translation: "));
@@ -139,49 +140,63 @@ architecture Behavioral of HuffmanTranslator is
             result_len := result_len + 1;
             result(result_len) := in_char;
             
-            -- Reset for new character
+            -- Reset for new character search
             curr_node := root;
             path_len := 0;
+            found := false;
             
-            -- Traverse tree to find character
-            while not nodes_arr(curr_node).is_leaf loop
-                -- Try left path first
-                if nodes_arr(curr_node).left_child /= -1 and 
-                   (nodes_arr(nodes_arr(curr_node).left_child).is_leaf and 
-                    character'val(to_integer(unsigned(nodes_arr(nodes_arr(curr_node).left_child).character))) = in_char) then
-                    -- Found character in left child
-                    curr_node := nodes_arr(curr_node).left_child;
-                    temp_path(path_len) := '0';
-                    path_len := path_len + 1;
-                    exit;
-                -- Try right path
-                elsif nodes_arr(curr_node).right_child /= -1 and 
-                      (nodes_arr(nodes_arr(curr_node).right_child).is_leaf and 
-                       character'val(to_integer(unsigned(nodes_arr(nodes_arr(curr_node).right_child).character))) = in_char) then
-                    -- Found character in right child
-                    curr_node := nodes_arr(curr_node).right_child;
-                    temp_path(path_len) := '1';
-                    path_len := path_len + 1;
-                    exit;
-                -- Continue searching
-                elsif nodes_arr(curr_node).left_child /= -1 then
-                    curr_node := nodes_arr(curr_node).left_child;
-                    temp_path(path_len) := '0';
-                    path_len := path_len + 1;
+            -- Find path to character
+            while not found loop
+                if nodes_arr(curr_node).is_leaf then
+                    if character'val(to_integer(unsigned(nodes_arr(curr_node).character))) = in_char then
+                        found := true;
+                    else
+                        -- Backtrack - remove last path bit and try right path
+                        while path_len > 0 and temp_path(path_len-1) = '1' loop
+                            path_len := path_len - 1;
+                            curr_node := root; -- Reset to root for backtracking
+                            -- Rebuild path up to this point
+                            for i in 0 to path_len-1 loop
+                                if temp_path(i) = '0' then
+                                    curr_node := nodes_arr(curr_node).left_child;
+                                else
+                                    curr_node := nodes_arr(curr_node).right_child;
+                                end if;
+                            end loop;
+                        end loop;
+                        if path_len > 0 then
+                            -- Try right path
+                            path_len := path_len - 1;
+                            curr_node := root;
+                            -- Rebuild path
+                            for i in 0 to path_len-1 loop
+                                if temp_path(i) = '0' then
+                                    curr_node := nodes_arr(curr_node).left_child;
+                                else
+                                    curr_node := nodes_arr(curr_node).right_child;
+                                end if;
+                            end loop;
+                            -- Add right path
+                            temp_path(path_len) := '1';
+                            path_len := path_len + 1;
+                            curr_node := nodes_arr(curr_node).right_child;
+                        end if;
+                    end if;
                 else
-                    curr_node := nodes_arr(curr_node).right_child;
-                    temp_path(path_len) := '1';
+                    -- Try left path first
+                    temp_path(path_len) := '0';
                     path_len := path_len + 1;
+                    curr_node := nodes_arr(curr_node).left_child;
                 end if;
             end loop;
             
-            -- Add path to binary result using proper character conversion
+            -- Add found path to binary result
             for i in 0 to path_len-1 loop
                 binary_len := binary_len + 1;
                 if temp_path(i) = '0' then
-                    binary(binary_len) := '0';  -- Using character literal
+                    binary(binary_len) := '0';
                 else
-                    binary(binary_len) := '1';  -- Using character literal
+                    binary(binary_len) := '1';
                 end if;
             end loop;
         end loop;

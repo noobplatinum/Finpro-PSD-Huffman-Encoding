@@ -17,7 +17,7 @@ entity NodeMerger is
 end NodeMerger;
 
 architecture Behavioral of NodeMerger is
-    -- Node type definition (unchanged)
+    -- Node type
     type node_type is record
         character    : std_logic_vector(7 downto 0);
         frequency    : integer;
@@ -40,7 +40,7 @@ architecture Behavioral of NodeMerger is
         write(l, integer'image(index), right, 1);
         write(l, string'(","));
         
-        -- Write character
+        -- Write char
         if node.is_leaf then
             temp_str(1) := character'val(to_integer(unsigned(node.character)));
             write(l, temp_str, right, 1);
@@ -61,7 +61,7 @@ architecture Behavioral of NodeMerger is
         write(l, integer'image(node.right_child), right, 1);
         write(l, string'(","));
         
-        -- Write is_leaf
+        -- Write leaf status
         write(l, boolean'image(node.is_leaf), right, 1);
         
         writeline(f, l);
@@ -73,7 +73,7 @@ architecture Behavioral of NodeMerger is
     type node_array is array(0 to MAX_NODES - 1) of node_type;
     type index_array is array(0 to MAX_NODES - 1) of integer;
 
-    -- Initialize all signals
+    -- Init signal
     signal nodes : node_array := (others => (
         character => (others => '0'),
         frequency => 0,
@@ -83,7 +83,7 @@ architecture Behavioral of NodeMerger is
     ));
     
     signal sorted_indices : index_array := (others => 0);
-    signal state : state_type := idle_state;  -- Now properly typed
+    signal state : state_type := idle_state;  
     signal sorted_size : integer := 0;
     signal next_node_index : integer := 0;
     signal root_index_sig : integer := 0;
@@ -111,7 +111,7 @@ begin
             next_node_index <= 0;
             root_index_sig <= 0;
             received_first_node <= false;
-            -- Clear arrays
+            -- Clear
             nodes <= (others => (
                 character => (others => '0'),
                 frequency => 0,
@@ -124,7 +124,7 @@ begin
         elsif rising_edge(clk) then
             case state is
                 when idle_state =>
-                    -- Always accept nodes in idle state
+                    -- Accept when idle
                     if sort_ready = '1' then
                         if SHOW_DEBUG then
                             report "Idle state received node: Char = " & 
@@ -169,10 +169,10 @@ begin
                     end if;
 
                 when sort_state =>
-                    -- Use variable for sorting
+                    -- Sorting
                     temp_indices := sorted_indices;
                     
-                    -- Bubble sort using variables
+                    -- Bubble sort
                     for i in 0 to sorted_size - 2 loop
                         for j in 0 to sorted_size - i - 2 loop
                             if nodes(temp_indices(j)).frequency > nodes(temp_indices(j + 1)).frequency or
@@ -187,8 +187,8 @@ begin
 
                     if SHOW_DEBUG then
                         report "----------------------------------------";
-                        report "After initial sorting:";
-                        report "Array contents:";
+                        report "Initial Sort:";
+                        report "Array:";
                         for i in 0 to sorted_size - 1 loop
                             report "Index " & integer'image(i) & ": Node " & 
                                     integer'image(temp_indices(i)) & 
@@ -204,21 +204,21 @@ begin
 
                     when merge_state =>
                     if sorted_size > 1 then
-                        -- Get indices of two smallest frequency nodes
+                        -- 2 smallest frequency nodes
                         min1_index := sorted_indices(0);
                         min2_index := sorted_indices(1);
                         
-                        -- Create temporary node array to track current frequencies
+                        -- Temp node to track freq
                         temp_nodes := nodes;
                         
-                        -- Calculate new merged node
+                        -- Calc new merged node
                         temp_node.frequency := temp_nodes(min1_index).frequency + temp_nodes(min2_index).frequency;
                         temp_node.left_child := min1_index;
                         temp_node.right_child := min2_index;
                         temp_node.is_leaf := false;
                         temp_node.character := (others => '0');
                         
-                        -- Update temp array with new node
+                        -- Update temp array 
                         temp_nodes(next_node_index) := temp_node;
                         
                         if SHOW_DEBUG then
@@ -232,21 +232,21 @@ begin
                                 ", Right=" & integer'image(min2_index) & ")";
                         end if;
                         
-                        -- Assign to actual nodes array
+                        -- Assign to actual array
                         nodes(next_node_index) <= temp_node;
                         
-                        -- Update indices array
+                        -- Update array
                         temp_indices := sorted_indices;
                         
-                        -- Shift remaining nodes left
+                        -- Shift left
                         for i in 0 to sorted_size - 3 loop
                             temp_indices(i) := sorted_indices(i + 2);
                         end loop;
                         
-                        -- Add new merged node
+                        -- Add new node
                         temp_indices(sorted_size - 2) := next_node_index;
                         
-                        -- Sort using frequencies from temp_nodes
+                        -- Sort from temp_nodes
                         for i in 0 to sorted_size - 3 loop
                             for j in 0 to sorted_size - i - 3 loop
                                 if temp_nodes(temp_indices(j)).frequency > temp_nodes(temp_indices(j + 1)).frequency then

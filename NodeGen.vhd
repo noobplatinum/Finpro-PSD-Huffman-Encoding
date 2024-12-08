@@ -49,7 +49,7 @@ begin
         variable freq_read   : integer;
     begin
         if reset = '1' then
-            -- Reset signal
+            -- Reset
             state       <= read_file;
             total_nodes <= 0;
             node_index  <= 0;
@@ -63,7 +63,7 @@ begin
                         readline(input_file, input_line);
                         state <= parse_line;
                     else
-                        state <= done_state; -- No more line
+                        state <= done_state;
                     end if;
 
                 when parse_line =>
@@ -99,7 +99,7 @@ begin
 
                         node_index <= node_index + 1;
 
-                        -- Transition back to read_file to read next line
+                        -- Read next line
                         state <= read_file;
                     else
                         node_ready <= '0';
@@ -107,7 +107,7 @@ begin
                     end if;
 
                 when done_state =>
-                    -- Mark process as completed
+                    -- Mark as completed
                     node_ready <= '0';
                     done <= '1';
                     report "Node generation completed. Total nodes: " & integer'image(total_nodes);

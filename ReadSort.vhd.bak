@@ -27,10 +27,11 @@ architecture Behavioral of ReadSort is
     signal data_index      : integer := 0;
     signal total_chars     : integer := 0;
 
-    type state_type is (read_file, count_freq, sort_data, output_data, done_state);
+    type state_type is (read_file, count_freq, sort_data, output_data, write_file, done_state);
     signal state : state_type := read_file;
 
     file input_file : text open read_mode is "Input";
+    file output_file : text open write_mode is "Output";
 
     function char_to_slv(c : character) return STD_LOGIC_VECTOR is
     begin
@@ -47,6 +48,7 @@ begin
         variable i, j, k        : integer;
         variable temp_freq      : integer;
         variable temp_char_var  : character;
+        variable output_line    : line;
     begin
         if reset = '1' then
             state       <= read_file;
@@ -116,8 +118,17 @@ begin
                         data_index <= data_index + 1;
                     else
                         data_ready <= '0';
-                        state <= done_state;
+                        state <= write_file;
                     end if;
+
+                when write_file =>
+                    for i in 0 to total_chars - 1 loop
+                        write(output_line, sorted_chars(i));
+                        write(output_line, string'(" "));
+                        write(output_line, sorted_freqs(i));
+                        writeline(output_file, output_line);
+                    end loop;
+                    state <= done_state;
 
                 when done_state =>
                     data_ready <= '0';
@@ -129,3 +140,4 @@ begin
         end if;
     end process;
 end Behavioral;
+
