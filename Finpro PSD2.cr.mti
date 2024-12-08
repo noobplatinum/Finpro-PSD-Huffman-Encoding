@@ -1,0 +1,11 @@
+{C:/Users/user/Documents/Tugas KULIAH Bryan/Perancangan Sistem Digital/Quartus projects/Finpro-PSD-Huffman-Encoding/test1.vhd} {2 {vcom -work work -2002 -explicit -stats=none {C:/Users/user/Documents/Tugas KULIAH Bryan/Perancangan Sistem Digital/Quartus projects/Finpro-PSD-Huffman-Encoding/test1.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_textio
+-- Compiling entity string_frequency
+-- Compiling architecture behavioral of string_frequency
+** Warning: C:/Users/user/Documents/Tugas KULIAH Bryan/Perancangan Sistem Digital/Quartus projects/Finpro-PSD-Huffman-Encoding/test1.vhd(57): (vcom-1013) Initial value of "local_sorted" depends on value of signal "sorted_chars".
+
+} {} {}}
