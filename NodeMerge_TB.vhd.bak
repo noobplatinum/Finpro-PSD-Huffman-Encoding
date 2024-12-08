@@ -30,6 +30,7 @@ architecture Behavioral of NodeMerger_tb is
     signal sort_done     : std_logic := '0';
     signal merge_done    : std_logic;
     signal root_index    : integer;
+    signal load_ack      : std_logic;
 
     -- Clock period definitions
     constant clk_period : time := 10 ns;
@@ -80,44 +81,43 @@ begin
     begin
         -- Reset
         reset <= '1';
+        sort_ready <= '0';
+        sort_done <= '0';
         wait for clk_period * 2;
         reset <= '0';
         wait for clk_period * 2;
     
         -- Load nodes
         for i in test_data'range loop
-            -- Prepare data
+            -- Setup data
             sorted_char <= std_logic_vector(to_unsigned(character'pos(test_data(i).char), 8));
             sorted_freq <= test_data(i).freq;
             
-            -- Wait for next clock cycle before asserting sort_ready
+            -- Wait for next clock and assert sort_ready
             wait until rising_edge(clk);
             sort_ready <= '1';
             
-            report "Sending node: Char = " & test_data(i).char & 
-                   ", Freq = " & integer'image(test_data(i).freq);
-                   
-            wait until rising_edge(clk);
+            -- Wait for load_ack
+            wait until rising_edge(clk) and load_ack = '1';
             sort_ready <= '0';
             
-            -- Wait two cycles between nodes
-            wait for clk_period * 2;
+            -- Wait one cycle for next node
+            wait until rising_edge(clk);
+            
+            report "Sent node " & integer'image(i) & ": Char = " & test_data(i).char & 
+                   ", Freq = " & integer'image(test_data(i).freq);
         end loop;
     
         -- Wait before asserting sort_done
-        wait for clk_period * 4;
-        
-        -- Signal end of node loading
+        wait for clk_period * 2;
         sort_done <= '1';
-        wait for clk_period;
+        wait until rising_edge(clk);
         sort_done <= '0';
     
         -- Wait for completion
-        wait until merge_done = '1';
+        wait until merge_done = '1' for 1000 ns;
+        assert merge_done = '1' report "Merge did not complete" severity failure;
         
-        -- Final verification
-        wait for clk_period * 5;
         wait;
     end process;
-
 end Behavioral;

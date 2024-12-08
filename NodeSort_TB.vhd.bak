@@ -36,7 +36,7 @@ architecture Behavioral of NodeSorter_tb is
     signal sort_done     : STD_LOGIC;
 
     -- Clock period definition
-    constant CLK_PERIOD : time := 1 s;
+    constant CLK_PERIOD : time := 1 ms;
 
     -- Test data type
     type test_data is record

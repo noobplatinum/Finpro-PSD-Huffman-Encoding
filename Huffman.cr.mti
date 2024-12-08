@@ -1,11 +1,20 @@
-C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd
+C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Compiling entity HuffmanProcessor
--- Compiling architecture Behavioral of HuffmanProcessor
+-- Compiling entity NodeSorter
+-- Compiling architecture Behavioral of NodeSorter
+
+} {} {}} C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge_TB.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeMerge_TB.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity NodeMerger_tb
+-- Compiling architecture Behavioral of NodeMerger_tb
 
 } {} {}} C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort_TB.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/NodeSort_TB.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
@@ -13,10 +22,37 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Compiling entity NodeSorter_tb
--- Compiling architecture Behavioral of NodeSorter_tb
+-- Compiling entity NodeMerger_tb
+-- Compiling architecture Behavioral of NodeMerger_tb
 
-} {} {}} C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/Topmod.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Topmod.vhd}
+} {} {}} C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity HuffmanProcessor
+-- Compiling architecture Behavioral of HuffmanProcessor
+** Error: C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(59): (vcom-1294) Declaration with designator "sort_ready" already exists in this region.
+** =====> Prior declaration of "sort_ready" is at C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(9).
+** Error: C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(60): (vcom-1294) Declaration with designator "sorted_char" already exists in this region.
+** =====> Prior declaration of "sorted_char" is at C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(10).
+** Error: C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(61): (vcom-1294) Declaration with designator "sorted_freq" already exists in this region.
+** =====> Prior declaration of "sorted_freq" is at C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(11).
+** Error: C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(74): (vcom-1136) Unknown identifier "gen_node_ready".
+** Error: C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(75): (vcom-1136) Unknown identifier "gen_node_char".
+** Error: C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(76): (vcom-1136) Unknown identifier "gen_node_freq".
+** Error: C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(77): (vcom-1136) Unknown identifier "gen_done".
+** Error: C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(84): (vcom-1136) Unknown identifier "gen_node_ready".
+** Error: C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(85): (vcom-1136) Unknown identifier "gen_node_char".
+** Error: C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(86): (vcom-1136) Unknown identifier "gen_node_freq".
+** Error: C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(87): (vcom-1136) Unknown identifier "gen_done".
+** Error: C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(91): (vcom-1136) Unknown identifier "sort_done_int".
+** Error: C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(114): (vcom-1136) Unknown identifier "gen_done".
+** Error: C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(114): Type error resolving infix expression "=" as type std.STANDARD.BOOLEAN.
+** Error: C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/HuffmanNode.vhd(138): VHDL Compiler exiting
+
+} {9.0 10.0 11.0 12.0 13.0 14.0 15.0 27.0} {}} C:/intelFPGA/18.1/FinalPSD/Finpro-PSD-Huffman-Encoding/Topmod.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\intelFPGA\18.1\FinalPSD\Finpro-PSD-Huffman-Encoding\Topmod.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
